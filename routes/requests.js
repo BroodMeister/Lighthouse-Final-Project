@@ -128,13 +128,13 @@ module.exports = (dbHandler) => {
                 dbHandler.addRest(rest)
                   .then(result => {
                     console.log("before add member sel after add rest:", member, restid);
-                    dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing!"})
+                    dbHandler.addMemberSel({member: member, restid: restid, comments: ""})
                       .then(result => res.send("1"));
                   });
               } else {
                 //add member selection to table
                 console.log("before add member selection, no rest add: ", member, restid);
-                dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"})
+                dbHandler.addMemberSel({member: member, restid: restid, comments: ""})
                 .then(result => res.send("1"));
               }
           })
@@ -160,7 +160,7 @@ module.exports = (dbHandler) => {
     dbHandler.putMembRestComments(req.session.member, req.body.memberrest, req.body.comments)
     .then(status => res.json("1"))
   });
-  
+
   // logout requested - clear cookie
   router.post('/logout', (req, res) =>  {
     req.session = null;
